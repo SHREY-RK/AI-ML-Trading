@@ -1,0 +1,165 @@
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  text-align: center;
+  z-index: 10;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: 12px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  min-height: 70px;
+  font-family: 'Benguiat', 'Times New Roman', serif;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+.start-button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(33, 1, 60, 0.252);
+  border-radius: 20px;
+  color: white;
+  letter-spacing: 1px;
+  transition: backdrop-filter 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.start-button:hover {
+  backdrop-filter: blur(14.7px);
+  -webkit-backdrop-filter: blur(14.7px);
+  transform: scale(1.11);
+}
+
+.start-button:active {
+  transform: scale(0.98);
+}
+
+.char {
+  display: inline-block;
+  animation: strangerFlicker 2s ease-in-out forwards;
+}
+
+@keyframes strangerFlicker {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+    letter-spacing: 2px;
+    min-height: 40px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .start-button {
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+
+  @keyframes strangerFlicker {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 0.5;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .start-button {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

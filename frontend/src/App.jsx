@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<div>Dashboard Coming Soon</div>} />
+        <Route path="/dashboard" element={<div style={{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center"}}>Dashboard Coming Soon</div>} />
       </Routes>
     </BrowserRouter>
   );

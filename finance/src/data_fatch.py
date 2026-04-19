@@ -1,8 +1,8 @@
 import yfinance as yf
 import pandas as pd
 
-def fetch_candles(stock_file):
-    
+def fetch_candles():
+    stock_file="TCS_5minute.csv"  # For testing without hitting Yahoo Finance repeatedly
     # print(f"Fetching {interval} data for {ticker} from Yahoo Finance...")
     
     # Download data

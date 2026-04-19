@@ -68,16 +68,40 @@ def kelly_fraction(win_rate, avg_win, avg_loss):
 
 
 def compute_atr_stop(entry_price, atr_value, multiplier=2.0, direction='long'):
-    """Returns the stop-loss price level for a given entry."""
+    """
+    Returns the hard stop-loss price level for a given entry.
+
+    Long  → stop is BELOW entry (price must not fall this far)
+    Short → stop is ABOVE entry (price must not rise this far)
+    """
     if direction == 'long':
         return entry_price - multiplier * atr_value
-    else:
+    else:   # short
         return entry_price + multiplier * atr_value
 
 
 def compute_trailing_stop(highest_price, atr_value, multiplier=1.5):
-    """ATR-based trailing stop — tightens as the trade moves in our favour."""
+    """
+    ATR-based trailing stop for LONG positions.
+    Trails the highest price seen since entry; tightens as the trade
+    moves in our favour.
+
+        stop = highest_price − multiplier × ATR
+    """
     return highest_price - multiplier * atr_value
+
+
+def compute_short_trailing_stop(lowest_price, atr_value, multiplier=1.5):
+    """
+    ATR-based trailing stop for SHORT positions.
+    Trails the lowest price seen since entry; the stop rises (tightens)
+    as the trade moves in our favour (i.e. as price falls).
+
+        stop = lowest_price + multiplier × ATR
+
+    Exit the short when the current price climbs back above this level.
+    """
+    return lowest_price + multiplier * atr_value
 
 
 def check_daily_loss_limit(daily_pnl, equity, max_daily_loss_pct=0.02):

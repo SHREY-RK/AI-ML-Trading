@@ -16,13 +16,15 @@ from src.backtest import backtest
 from src.performance import performance_metrics, print_metrics
 
 
+stock_file = "WIPRO_5minute.csv"
 def run_backtest(ticker, start, end, interval, capital):
     print(f"\n{'='*50}")
     print(f"  Backtest: {ticker} | {interval} | {start} → {end}")
     print(f"{'='*50}")
 
+
     # 1. Fetch data
-    df = fetch_candles()
+    df = fetch_candles(stock_file)
     print(f"  Loaded {len(df)} bars.")
 
     # 2. Add indicators
@@ -33,7 +35,7 @@ def run_backtest(ticker, start, end, interval, capital):
         df,
         lookahead=8,  # how many bars ahead to look for the profit target
         profit_target=0.005,  # 0.5% profit target for labeling the data
-        confidence_threshold=0.55,  # only take signals where the model is at least 55% confident
+        confidence_threshold=0.65,  # only take signals where the model is at least 55% confident
         n_splits=10,  # number of walk-forward splits for training/testing the model
         model_type='rf',  # 'rf' for Random Forest, 'gb' for Gradient Boosting
     )
@@ -107,7 +109,7 @@ if __name__ == "__main__":
     # args = parser.parse_args()
 
     # if args.mode == 'backtest':
-    run_backtest('AAPL', '2020-03-16', '2020-03-27', '1min', capital=100000)
+    run_backtest(stock_file, '2020-03-16', '2020-03-27', '1min', capital=100000)
     
     
     # else:

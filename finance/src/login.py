@@ -1,21 +1,28 @@
-from SmartApi import SmartConnect
-import pyotp
-from config import API_KEY, CLIENT_CODE, MPIN
+import os
+from growwapi import GrowwAPI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def generate_session():
     try:
-        smartApi = SmartConnect(API_KEY)
-        totp = pyotp.TOTP("S6QN3EBYUFCLLYAYB6PY3DWI4E").now()
-        data = smartApi.generateSession(CLIENT_CODE, MPIN, totp)
+        api_key = os.getenv("GROWW_API_KEY")
+        secret = os.getenv("GROWW_API_SECRET")
+
+        if not api_key or not secret:
+            raise Exception("Missing Groww API Key or Secret in .env file")
+
+        # Generate the daily access token
+        access_token = GrowwAPI.get_access_token(api_key=api_key, secret=secret)
         
-        if not data or not data.get("status"):
-            raise Exception(f"Login failed: {data.get('message', 'Unknown error')}")
+        # Initialize the API client
+        groww = GrowwAPI(access_token)
         
-        print("Login Successful")
-        return smartApi
+        print("YUP! Groww Login Successful")
+        return groww
         
     except Exception as e:
-        print("Session generation failed:", e)
+        print("Groww Session generation failed:", e)
         return None
 
 if __name__ == "__main__":

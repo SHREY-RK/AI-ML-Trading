@@ -9,7 +9,7 @@ Run live trading:
 """
 
 import time
-from src.data_fatch   import fetch_candles
+from src.data_fatch   import fetch_candles, stock_file
 from src.indicators   import add_all_indicators
 from src.strategies   import generate_signals
 from src.backtest     import backtest
@@ -65,7 +65,7 @@ def run_backtest(ticker, start, end, interval, capital):
         lookahead=10,
         profit_target=0.005,
         confidence_threshold=0.55,
-        n_splits=5,
+        n_splits=10,
         model_type='rf',
     )
     _divider()
@@ -118,4 +118,4 @@ def run_backtest(ticker, start, end, interval, capital):
 # ══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
-    run_backtest('TCS', '2024-01-01', '2025-01-01', '5min', capital=100_000)
+    run_backtest(stock_file, '2024-01-01', '2025-01-01', '5min', capital=100_000)

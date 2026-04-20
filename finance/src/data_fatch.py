@@ -1,14 +1,14 @@
 import yfinance as yf
 import pandas as pd
 
+stock_file="ONGC"  # For testing without hitting Yahoo Finance repeatedly
 def fetch_candles():
-    stock_file="TCS_5minute.csv"  # For testing without hitting Yahoo Finance repeatedly
     # print(f"Fetching {interval} data for {ticker} from Yahoo Finance...")
     
     # Download data
     # df = yf.download(ticker, start=start_date, end=end_date, interval=interval, progress=False)
     # df = pd.read_csv("META_1min_sample.csv")  # For testing without hitting Yahoo Finance repeatedly
-    df = pd.read_csv(f"finance/Data/{stock_file}")  # For testing without hitting Yahoo Finance repeatedly
+    df = pd.read_csv(f"finance/Data/{stock_file}_5minute.csv")  # For testing without hitting Yahoo Finance repeatedly
     
     # if df.empty:
         # raise Exception(f"Failed to fetch data for {ticker}. Check the dates or ticker symbol.")
